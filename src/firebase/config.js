@@ -1,21 +1,22 @@
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import 'firebase/firestore'; 
+import 'firebase/auth'
 
-// Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyBytvHX6bR3WGzdntY1BB1WwdZ90c6rD4o",
-    authDomain: "image-repository-b4ec2.firebaseapp.com",
-    projectId: "image-repository-b4ec2",
-    storageBucket: "image-repository-b4ec2.appspot.com",
-    messagingSenderId: "274170137098",
-    appId: "1:274170137098:web:a2d39a97cc54a621ffadf3"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const fbStorage = firebase.storage();
 const fbFirestore = firebase.firestore();
+const fbAuth = firebase.auth();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
-export { fbStorage, fbFirestore, timestamp };
+export { fbStorage, fbFirestore, fbAuth, timestamp };
