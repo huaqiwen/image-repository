@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import useStorage from '../fb-hooks/useStorage';
 
-const ProgressBar = ({ file, setFile }) => {
-    const { url, progress } = useStorage(file);
+const ProgressBar = ({ files, setFiles }) => {
+    const { url, progress } = useStorage(files);
 
     useEffect(() => {
         // when url is not null, file finished upload. set file to null to remove progress bar
         if (url) {
-            setFile(null);
+            setFiles([]);
         }
-    }, [url, setFile]);
+    }, [url, setFiles]);
 
     return (
         <motion.div className="progress-bar" 
