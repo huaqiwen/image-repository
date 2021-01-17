@@ -1,5 +1,5 @@
 import React from 'react';
-import useFirestore from '../fb-hooks/userFirestore'
+import useFirestore from '../fb-hooks/useFirestore'
 import { motion } from 'framer-motion';
 
 const ImageGrid = ({ setSelectedImg }) => {
