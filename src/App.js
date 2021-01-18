@@ -28,9 +28,9 @@ function App() {
             <Route path="/home" render={() => 
               <>
                 <Navigation />
-                <Title />
-                <UploadForm />
                 <div className="main-grid">
+                  <Title />
+                  <UploadForm />
                   <ImageGrid setSelectedImg={setSelectedImg} className="main-grid" />
                 </div>
                 { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }

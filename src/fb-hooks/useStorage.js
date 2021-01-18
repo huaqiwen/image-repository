@@ -1,7 +1,10 @@
 import { useState, useEffect} from 'react';
 import { fbStorage, fbFirestore, timestamp } from '../firebase/config';
+import { useAuth } from '../contexts/AuthContext';
 
-const useStorage = (files) => {
+const useStorage = (files, isPrivate, uploadTags) => {
+    const { currentUser } = useAuth();
+
     const [url, setUrl] = useState(null);
     const [progress, setProgress] = useState(null);
     const [err, setErr] = useState(null);
@@ -24,14 +27,17 @@ const useStorage = (files) => {
             }, async () => {        // on complete
                 const url = await storageRef.getDownloadURL();
                 const createdAt = timestamp();
-                collectionRef.add({ url, createdAt });
+                const uploadedBy = currentUser.uid;
+                const tags = uploadTags;
+                
+                collectionRef.add({ url, createdAt, uploadedBy, tags, isPrivate });
             });
         })
 
         // after all file upload tasks are complete, set a placeholder url to notify ProgressBar
         Promise.all(promises)
             .then(() => setUrl("https://google.com"));
-    }, [files]);
+    }, [files, currentUser, isPrivate, uploadTags]);
 
     return { url, progress, err };
 }

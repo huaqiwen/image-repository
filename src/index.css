@@ -37,12 +37,14 @@ body{
   margin: 30px auto 10px;
   text-align: center;
 }
-.upload-form label input{
+.upload-form button input{
   height: 0;
   width: 0;
   opacity: 0;
 }
-.upload-form label{
+.upload-form button{
+  outline: none;
+  background-color: #fff;
   display: block;
   width: 40px;
   height: 40px;
@@ -54,7 +56,7 @@ body{
   font-weight: bold;
   font-size: 24px;
 }
-.upload-form label:hover{
+.upload-form button:hover{
   background: var(--primary);
   color: white;
 }
@@ -95,6 +97,17 @@ body{
   position: absolute;
   top: 0;
   left: 0;
+}
+figcaption {
+  position: absolute;
+  height: 23px;
+  width: 100%;
+  bottom: 0;
+  color: #fff;
+  font-size: 12pt;
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: right;
+  padding-right: 12px;
 }
 
 /* modal styles */
