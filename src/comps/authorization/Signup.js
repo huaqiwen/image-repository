@@ -10,7 +10,7 @@ export default function Signup() {
     const passwordConfirmRef = useRef();
 
     // signup states
-    const { currentUser, signup } = useAuth();
+    const { signup } = useAuth();
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -28,12 +28,12 @@ export default function Signup() {
             setError('');
             setSuccess(false);
             setLoading(true);
-            await signup(emailRef.current.value, passwordRef.current.value);
+            const user = (await signup(emailRef.current.value, passwordRef.current.value)).user;
             setSuccess(true);
 
             // add basic profile
-            if (currentUser) {
-                await currentUser.updateProfile({
+            if (user) {
+                await user.updateProfile({
                     displayName: nameRef.current.value
                 });
                 // signup success, go home

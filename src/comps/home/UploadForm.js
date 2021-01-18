@@ -1,6 +1,8 @@
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
 import React, { useState } from 'react';
 import ProgressBar from './ProgressBar';
+import { useAuth } from '../../contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 const UploadForm = () => {
     // file upload
@@ -11,6 +13,9 @@ const UploadForm = () => {
     const [files, setFiles] = useState([]);
     const [err, setErr] = useState(null);
     const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+
+    const { currentUser } = useAuth();
+    const history = useHistory();
     
     const [showUploadModal, setShowUploadModal] = useState(false);
     const handleClose = () => setShowUploadModal(false);
@@ -38,7 +43,14 @@ const UploadForm = () => {
     return (
         <div className="upload-form">
             <form>
-                <button type="button" onClick={() => setShowUploadModal(true)}>+</button> 
+                <button type="button" onClick={() => {
+                    if (currentUser) {
+                        setShowUploadModal(true)
+                    } else {
+                        history.push("/signup");
+                    }
+                }}>+</button>
+
                 <div className="output">
                     { err && <div className="error">{ err } </div> }
                     { (files.length !== 0) && 
