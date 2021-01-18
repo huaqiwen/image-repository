@@ -1,7 +1,9 @@
 import { useState, useEffect} from 'react';
 import { fbFirestore } from '../firebase/config';
+import { useAuth } from '../contexts/AuthContext';
 
 const useFirestore = (collection) => {
+    const { currentUser } = useAuth();
     const [docs, setDocs] = useState([]);
 
     useEffect(() => {
@@ -10,13 +12,16 @@ const useFirestore = (collection) => {
             .onSnapshot((snapshot) => {
                 let documents = [];
                 snapshot.forEach(document => {
-                    documents.push({...document.data(), id: document.id});
+                    const docData = document.data();
+                    if (!docData.isPrivate || docData.uploadedBy === (currentUser ? currentUser.uid : "")) {
+                        documents.push({...docData, id: document.id});
+                    }
                 });
                 setDocs(documents);
             });
         
         return () => unsubscribe();
-    }, [collection]);
+    }, [collection, currentUser]);
 
     return docs;
 }
