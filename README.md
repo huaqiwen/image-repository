@@ -14,7 +14,6 @@ An image repository 🖼️ created using React and Google Firebase. Deployed vi
 
 ## Basic Usage <a name="basic-usage">
 
----
 ### Viewing <a name="viewing">
 While not logged in, users can freely view public uploads from other users. 
 
@@ -35,7 +34,6 @@ The Images will then be saved into Google Firebase Storage and their associate m
 
 ## Authentication <a name="auth">
 
----
 Basic authentication can be controled by various buttons located at the right part of the navigation bar, including "Sign Up" and "Log In" when users are not logged in and "Log Out" when users are already logged in. 
 
 All authentication are stored in Google Firebase Auth with user profiles that store users' display names. 
