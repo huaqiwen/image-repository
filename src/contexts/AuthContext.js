@@ -18,6 +18,10 @@ export default function AuthProvider({ children }) {
         return fbAuth.signInWithEmailAndPassword(email, pwd);
     }
 
+    function logout() {
+        return fbAuth.signOut();
+    }
+
     useEffect(() => {
         const unsubscribe = fbAuth.onAuthStateChanged(usr => {
             setCurrentUser(usr);
@@ -29,6 +33,7 @@ export default function AuthProvider({ children }) {
     const value = {
         currentUser,
         login,
+        logout,
         signup
     }
 

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Signup() {
     const nameRef = useRef();
@@ -33,14 +33,11 @@ export default function Signup() {
 
             // add basic profile
             if (currentUser) {
-                currentUser.updateProfile({
+                await currentUser.updateProfile({
                     displayName: nameRef.current.value
-                }).then(() => {
-                    // signup success, go home
-                    history.push("/home");
-                }).catch(err => {
-                    console.log(err);
                 });
+                // signup success, go home
+                history.push("/home");
             }
         } catch (err) {
             console.log(err);

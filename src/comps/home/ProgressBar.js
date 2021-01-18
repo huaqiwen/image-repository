@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import useStorage from '../fb-hooks/useStorage';
+import useStorage from '../../fb-hooks/useStorage';
 
 const ProgressBar = ({ files, setFiles }) => {
     const { url, progress } = useStorage(files);

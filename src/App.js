@@ -4,12 +4,13 @@ import { Container } from 'react-bootstrap';
 
 import AuthProvider from './contexts/AuthContext';
 
-import ImageGrid from './comps/ImageGrid';
-import Modal from './comps/Modal';
-import Title from './comps/Title';
-import UploadForm from './comps/UploadForm';
-import Signup from './comps/Signup';
-import Login from './comps/Login';
+import ImageGrid from './comps/home/ImageGrid';
+import Modal from './comps/home/Modal';
+import Title from './comps/home/Title';
+import UploadForm from './comps/home/UploadForm';
+import Signup from './comps/authorization/Signup';
+import Login from './comps/authorization/Login';
+import Navigation from './comps/home/Navigation';
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -26,9 +27,12 @@ function App() {
 
             <Route path="/home" render={() => 
               <>
+                <Navigation />
                 <Title />
                 <UploadForm />
-                <ImageGrid setSelectedImg={setSelectedImg} />
+                <div className="main-grid">
+                  <ImageGrid setSelectedImg={setSelectedImg} className="main-grid" />
+                </div>
                 { selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }
               </>
             } />
