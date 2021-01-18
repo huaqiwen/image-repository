@@ -4,7 +4,7 @@
 
 ---
 
-An image repository 🖼️ created using React and Google Firebase. Deployed via Netlify at [https://image-repository-eh.netlify.app](https://image-repository-eh.netlify.app).
+An image repository 🖼️ created using React and Google Firebase. Deployed via Netlify at [here](https://image-repository-eh.netlify.app).
 
 ## Contents 📦
 1. [Basic Usage](#basic-usage)
